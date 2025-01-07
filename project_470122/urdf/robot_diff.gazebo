@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<robot>
+    <!-- SET COLORS FOR GAZEBO -->
+    <gazebo reference="base_link">
+        <material>Gazebo/Green</material>
+    </gazebo>
+    <gazebo reference="demo_link">
+        <material>Gazebo/Red</material>
+    </gazebo>
+ 
+    <gazebo>
+        <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+            <legacyMode>false</legacyMode>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>60</updateRate>
+            <leftJoint>left_wheel_joint</leftJoint>
+            <rightJoint>right_wheel_joint</rightJoint> 
+            <wheelSeparation>0.14</wheelSeparation>
+            <wheelDiameter>0.1</wheelDiameter>
+            <wheelTorque>20</wheelTorque>
+            <commandTopic>cmd_vel</commandTopic>
+            <odometryTopic>/diff_drive_robot/odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <robotBaseFrame>base_footprint</robotBaseFrame>
+        </plugin>
+    </gazebo>
+
+    <gazebo reference="lidar_link">
+        <sensor type="ray" name="lidar_sensor">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>false</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>720</samples>
+                        <resolution>1</resolution>
+                        <min_angle>0</min_angle>
+                        <max_angle>6.28</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.1</min>
+                    <max>2</max>
+                    <resolution>0.01</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise> 
+            </ray>
+            <plugin name="gazebo_ros_head_lidar_controller" filename="libgazebo_ros_laser.so">
+                <!-- <topicName>/diff_drive_robot/laser/scan</topicName> -->
+                <topicName>scan</topicName>
+                <frameName>lidar_link</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+</robot>

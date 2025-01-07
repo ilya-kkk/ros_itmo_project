@@ -1,0 +1,14 @@
+TrajectoryPlannerROS:
+  max_vel_x: 0.5
+  min_vel_x: -0.5
+  max_vel_theta: 0.5
+  min_vel_theta: -0.5
+  acc_lim_x: 1.0
+  acc_lim_theta: 1.0
+  sim_time: 2.0 # время для планирования траектории
+  vx_samples: 6 # количество различных линейных скоростей
+  vtheta_samples: 20  # колво различных угловых скоростей 
+  path_distance_bias: 30.0 # чем больше тем более не линейные траектории выбирает робот
+  goal_distance_bias: 10.0 # важность движения к цели
+  meter_scoring: true 
+  holonomic_robot: true 

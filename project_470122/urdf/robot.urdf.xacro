@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="./materials.xacro" />
+  <xacro:include filename="./robot_diff.gazebo" />
+  <link name="base_link">
+    <collision name='caster_collision'>
+      <origin xyz=" -0.20 0.0 -0.11" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0</mu>
+            <mu2>0</mu2>
+            <slip1>1.0</slip1>
+            <slip2>1.0</slip2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+    <visual name='caster_visual'>
+      <origin xyz="-0.20 0.0 -0.11" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+
+    <collision name='caster_collision2'>
+      <origin xyz="0.08 0.0 -0.11" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0</mu>
+            <mu2>0</mu2>
+            <slip1>1.0</slip1>
+            <slip2>1.0</slip2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+    <visual name='caster_visual2'>
+      <origin xyz="0.08 0.0 -0.11" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+
+    <inertial>
+      <origin
+        xyz="-0.0874516163459738 5.31422875144915E-09 0.0387204580713744"
+        rpy="0 0 0" />
+      <mass
+        value="2.88193088332526" />
+      <inertia
+        ixx="0.0061331281193836"
+        ixy="7.93377680961833E-09"
+        ixz="0.00193483075640293"
+        iyy="0.00924143994663832"
+        iyz="-2.8840787066109E-09"
+        izz="0.00886382713610894" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project_470122/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project_470122/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="lidar_link">
+    <inertial>
+      <origin
+        xyz="-1.7371E-35 -1.8775E-19 0.0075"
+        rpy="0 0 0" />
+      <mass
+        value="0.0096457" />
+      <inertia
+        ixx="5.5764E-07"
+        ixy="1.7632E-38"
+        ixz="-1.4344E-40"
+        iyy="5.5764E-07"
+        iyz="1.7338E-23"
+        izz="7.5357E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project_470122/meshes/lidar_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project_470122/meshes/lidar_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar_joint"
+    type="fixed">
+    <origin
+      xyz="-0.1 0 0.11491"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="left_wheel_link">
+    <inertial>
+      <origin
+        xyz="0 -5.1918E-05 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.12386" />
+      <inertia
+        ixx="5.0485E-05"
+        ixy="-3.496E-22"
+        ixz="1.9331E-23"
+        iyy="9.3248E-05"
+        iyz="1.1154E-21"
+        izz="5.0485E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project_470122/meshes/left_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project_470122/meshes/left_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.087618 0.052 -0.082542"
+      rpy="0 1.5708 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="100"
+      velocity="10" />
+  </joint>
+  <link
+    name="right_wheel_link">
+    <inertial>
+      <origin
+        xyz="0 5.1918E-05 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.12386" />
+      <inertia
+        ixx="5.0485E-05"
+        ixy="-2.6006E-21"
+        ixz="1.1638E-21"
+        iyy="9.3248E-05"
+        iyz="-4.3711E-21"
+        izz="5.0485E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project_470122/meshes/right_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project_470122/meshes/right_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.087618 -0.052 -0.082542"
+      rpy="0 1.5708 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="100"
+      velocity="10" />
+  </joint>
+</robot>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>project_470122</name>
+  <version>0.0.0</version>
+  <description>meat...</description>
+
+  <maintainer email="root@todo.todo">root</maintainer>
+  <license>BSD</license>
+
+  <!-- Инструмент сборки -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- === Зависимости для Hector SLAM === -->
+  <depend>hector_slam</depend>
+  <build_depend>hector_mapping</build_depend>
+  <build_depend>hector_geotiff</build_depend>
+  <build_depend>hector_trajectory_server</build_depend>
+  <exec_depend>hector_mapping</exec_depend>
+  <exec_depend>hector_geotiff</exec_depend>
+  <exec_depend>hector_trajectory_server</exec_depend>
+
+  <!-- === Зависимости для Move Base === -->
+  <build_depend>move_base</build_depend>
+  <exec_depend>move_base</exec_depend>
+
+  <!-- Общие зависимости для ROS -->
+  <build_depend>ros_control</build_depend>
+  <build_depend>ros_controllers</build_depend>
+  <build_depend>gazebo_ros_control</build_depend>
+  <exec_depend>ros_control</exec_depend>
+  <exec_depend>ros_controllers</exec_depend>
+  <exec_depend>gazebo_ros_control</exec_depend>
+
+  <!-- Зависимости ROS -->
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>tf</exec_depend>
+
+  <export>
+  </export>
+</package>
